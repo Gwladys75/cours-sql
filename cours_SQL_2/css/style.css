@@ -1,0 +1,53 @@
+body {
+    background-color: #ddd;
+    font-family: 'Open Sans', sans-serif;
+}
+
+hr {
+    height: 7px;
+    background: linear-gradient(to right, #0320CE 0%, #09CACB 50%, #00AF33 100%);
+    width: 80%;
+}
+
+th {
+    text-align: center;
+}
+
+table {
+    border-top: none;
+}
+
+.container {
+    background-color: #fff;
+}
+
+h1 {
+    font-size: 5em;
+    font-family: 'Amatic SC', cursive;
+    color: blue;
+    text-shadow: 2px 1px 4px cornflowerblue;
+}
+
+h2 {
+    font-size: 3.5em;
+    font-family: 'Amatic SC', cursive;
+    color: cornflowerblue;
+    padding: 25px;
+}
+
+h3 {
+    font-size: 1.8em;
+    font-family: 'Amatic SC', cursive;
+    color: darkblue;
+    padding: 15px;
+}
+/* 
+code {
+    font-size: 1.3em;
+    font-weight: 600;
+} */
+
+#tableComparaisons {
+    width: 70%;
+    margin: auto;
+}

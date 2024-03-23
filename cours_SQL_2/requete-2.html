@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <title>Cours SQL - Colombbus</title>
+
+    <!-- font Google -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Open+Sans&display=swap" rel="stylesheet"> 
+
+    <!-- mon css -->
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="container-fluid">
+        <!-- ========================================= -->
+        <!-- Navbar -->
+        <!-- ========================================= -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">Navbar scroll</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarScroll">
+              <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
+                  <li class="nav-item">
+                      <a class="nav-link" href="index.html">Index</a>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="requete-1.html">Pratique pt.1</a>
+                </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle active" href="#" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                      Pratique pt.2
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                          <li><a class="dropdown-item" href="#insertInto">1-Requête d'insertion</a></li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+          </nav>
+    </div><!-- fin du container fluid -->
+
+        
+
+    <!-- ========================================= -->
+    <!-- Contenu principal -->
+    <!-- ========================================= -->
+
+    <div class="container">
+        <div class="row m-2">
+            <div class="col-sm-12">
+                <h1 class="text-center">Les requêtes MySQL pt.2</h1>
+            </div>
+        </div> <!-- fin de la première row -->
+
+        <div class="row m-2 border p-2">
+          <div class="col-sm-12">
+              <h2 class="text-center" id="insertInto">1 - INSERT INTO, requête d'insertion</h2>
+              <ul>
+                  <li>Pour insérer un enregistrement, 1ère méthode : <code>INSERT INTO employes (prenom, nom, sexe, service, date_embauche, salaire) VALUES ('Alexis', 'Richy', 'm', 'informatique', '2011-12-28', 1800);</code></li>
+                  <li>Pour voir l'ID d'Alexis, il y a deux façons : <code>SELECT * FROM employes WHERE prenom='alexis';</code> ou bien <code> SELECT * FROM employes ORDER BY id_employes DESC LIMIT 1;</code></li>
+                  <li>Pour insérer un enregistrement, 2ème méthode : <code>INSERT INTO employes VALUES (NULL, 'Jeanne', 'Richy', 'm', 'informatique', '2012-01-28', 1800)</code></li>
+                  <li class="alert alert-danger">NULL nous permet de laisser le champ id_employes se remplir seul car il est auto-incrémenté. </li>
+              </ul>
+          </div>
+        </div><!-- fin de la rangée -->
+
+        <div class="row m-2 border p-2">
+            <div class="col-sm-12">
+                <h2 class="text-center" id="insert">2 - Requête de modification</h2>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <h3 class="text-center">a) Maj avec UPDATE</h3>
+                <ul>
+                    <li>Augmenter le salaire d'un employé : <code>UPDATE employes SET salaire=1871 WHERE id_employes=990;</code></li>
+                    <li class="alert alert-danger">On utilise toujours des id pour mettre à jour les informations de la base de donnée car c'est le seul élément unique. </li>
+                    <li>Pour faire plusieurs mises à jour en même temps il faudra respecter l'ordre des colonnes et les séparer par une virgule : <code>UPDATE employes SET service='commercial', salaire=1872 WHERE id_employes=990;</code></li>
+                </ul>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <h3 class="text-center">b) Supprimer avec DELETE</h3>
+                <ul>
+                    <li>Supprimer l'enregistrement d'un employé avec DELETE : <code>DELETE FROM employes WHERE id_employes=388;</code></li>
+                    <li>Supprimer plusieurs enregistrements avec le code suivant : <code>DELETE FROM employes WHERE service = 'informatique'; </code>ici on supprime toutes les personnes du service informatique. </li>DELETE 
+                </ul>
+            </div>
+          </div><!-- fin de la rangée -->
+
+          <div class="row m-2 border p-2">
+            <div class="col-sm-12">
+                <h2 class="text-center" id="insert">3 - Quelques exercices</h2>
+            </div>
+            
+            <div class="col-sm-12">
+               <ul>
+                   <li>Afficher la profession de l'employé 547 : <code>SELECT service FROM employes WHERE id_employes=547;</code></li>
+                   <li>Afficher la date d'embauche d'Amandine : <code>SELECT prenom, date_embauche FROM employes WHERE prenom='Amandine';</code></li>
+                   <li>Afficher le nombre de commerciaux : <code>SELECT COUNT(*) AS 'nbr_commerciaux' FROM employes WHERE service ='commercial';</code></li>
+                   <li>Afficher le coût des commerciaux sur une année : <code>SELECT SUM(salaire*12) AS 'salaire_annuel_commercial' FROM employes WHERE service='commercial'</code></li>
+                   <li>Afficher le salaire moyen par service : <code>SELECT AVG(salaire) FROM employes GROUP BY service;</code></li>
+                   <li>Afficher le nombre de recrutement sur l'année 2010 : <code>SELECT date_embauche, COUNT(*) AS 'nbr de recrutement 2010' FROM employes WHERE date_embauche BETWEEN '2010-01-01' AND '2010-12-31' GROUP BY date_embauche;</code> ou <code>SELECT COUNT(*) AS 'nbr de recrutement 2010' FROM employes WHERE date_embauche LIKE '2010%';</code> ou <code>SELECT COUNT(*) as 'nb de recrutement' FROM employes WHERE date_embauche >= '2010-01-01' AND date_embauche <= '2010-12-31';</code></li>
+                   <li>Augmenter le salaire pour chaque employé de 100€ : <code>UPDATE employes SET salaire=salaire+100;</code></li>
+                   <li>Afficher le nombre de service : <code>SELECT COUNT(DISTINCT service) AS 'nombre de services' FROM employes;</code></li>
+                   <li>Afficher les informations de l'employé du service commercial gagnant le salaire le plus élevé : <code>SELECT * FROM employes WHERE service ='commercial' AND salaire=(SELECT MAX(salaire) FROM employes WHERE service='commercial');</code></li>
+                   <li>Afficher l'employé ayant été embauché en dernier : <code>SELECT * FROM employes WHERE date_embauche=(SELECT MAX(date_embauche) FROM employes);</code></li>
+               </ul>
+            </div>
+           
+          </div><!-- fin de la rangée -->
+
+      <br><br>
+    </div> <!-- fin du container -->
+
+    <!-- Optional JavaScript -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+   
+  </body>
+</html>
